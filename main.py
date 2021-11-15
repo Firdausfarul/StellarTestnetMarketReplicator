@@ -126,6 +126,8 @@ for i in range(len(pairA)):
     if (stellar_sdk.LiquidityPoolAsset.is_valid_lexicographic_order(pairA[i], pairB[i])):
         liqpool_testnet = stellar_sdk.LiquidityPoolAsset(pairA[i], pairB[i], stellar_sdk.LIQUIDITY_POOL_FEE_V18)
     elif (stellar_sdk.LiquidityPoolAsset.is_valid_lexicographic_order(pairA[i], pairB[i]) == False):
+        liqpool_details['reserves'][0]['amount'], liqpool_details['reserves'][1]['amount'] = \
+            liqpool_details['reserves'][1]['amount'], liqpool_details['reserves'][0]['amount']
         liqpool_testnet = stellar_sdk.LiquidityPoolAsset(pairB[i], pairA[i], stellar_sdk.LIQUIDITY_POOL_FEE_V18)
     liqpool_id_testnet = liqpool_testnet.liquidity_pool_id
 
